@@ -44,9 +44,11 @@ body {
 }
 
 .button {
-  @apply flex justify-end px-4 text-2xl text-white;
+  @apply flex justify-end px-4 text-4xl text-white;
 }
-
+.transportTypeLinks {
+  @apply flex px-10 py-10 text-5xl text-white;
+}
 .transport-links {
   @apply mt-8 flex justify-center;
   justify-content: space-evenly;
