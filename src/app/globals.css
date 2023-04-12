@@ -17,11 +17,44 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  @apply bg-slate-800;
+  color: rgb(var(--foreground-rgb));
+}
+
+@layer utilities {
+  .border-white-300 {
+    border-color: white;
+  }
+}
+
+.homePageText {
+  @apply mt-8 text-center text-8xl text-white;
+}
+
+.secondaryHomePageText {
+  @apply mt-8 text-center text-4xl text-white;
+}
+
+.header {
+  @apply border-b-4 border-cyan-400 bg-slate-500;
+}
+
+.button {
+  @apply flex justify-end px-4 text-2xl text-white;
+}
+
+.transport-links {
+  @apply mt-8 flex justify-center;
+  justify-content: space-evenly;
+}
+
+.trasnportTypeText {
+  @apply mt-8 text-7xl text-white;
+  display: flex;
 }
