@@ -21,7 +21,12 @@ export default function Home() {
         </SignedIn>
         <SignedOut>
           <p className="secondaryHomePageText">You are signed out!</p>
-          <Link href="/sign-in">Sign In</Link>
+          <Link
+            className="secondaryHomePageText animate-bounce"
+            href="/sign-in"
+          >
+            Sign In
+          </Link>
         </SignedOut>
       </main>
     </>
