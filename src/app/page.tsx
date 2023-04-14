@@ -1,5 +1,5 @@
-import { SignInButton, SignOutButton, useUser } from '@clerk/nextjs';
-import { SignedIn, SignedOut, SignIn } from '@clerk/nextjs/app-beta';
+import Navbar from '@/components/navbar';
+import { SignedIn, SignedOut } from '@clerk/nextjs/app-beta';
 import Link from 'next/link';
 
 export default function Home() {
@@ -20,7 +20,7 @@ export default function Home() {
           </div>
         </SignedIn>
         <SignedOut>
-          <p>You are signed out!</p>
+          <p className="secondaryHomePageText">You are signed out!</p>
           <Link href="/sign-in">Sign In</Link>
         </SignedOut>
       </main>

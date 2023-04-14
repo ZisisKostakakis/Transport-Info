@@ -1,4 +1,5 @@
-import { ClerkProvider, SignedIn, SignedOut } from '@clerk/nextjs/app-beta';
+import Navbar from '@/components/navbar';
+import { ClerkProvider } from '@clerk/nextjs/app-beta';
 import './globals.css';
 
 export const metadata = {
@@ -14,7 +15,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ClerkProvider>
-        <body>{children}</body>
+        <body>
+          <script src="https://kit.fontawesome.com/cfb314ea0a.js" async />
+          <Navbar />
+          {children}
+        </body>
       </ClerkProvider>
     </html>
   );
