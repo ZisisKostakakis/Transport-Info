@@ -1,8 +1,9 @@
-import "./globals.css";
+import { ClerkProvider, SignedIn, SignedOut } from '@clerk/nextjs/app-beta';
+import './globals.css';
 
 export const metadata = {
-  title: "Transport-Info",
-  description: "Get information about your transport",
+  title: 'Transport-Info',
+  description: 'Get information about your transport',
 };
 
 export default function RootLayout({
@@ -12,7 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <ClerkProvider>
+        <body>{children}</body>
+      </ClerkProvider>
     </html>
   );
 }
