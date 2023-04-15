@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { UserButton } from '@clerk/nextjs/app-beta';
-import { FC } from 'react';
+import React from 'react';
 
 interface navbarProps {}
 
@@ -73,4 +73,4 @@ const Navbar: React.FC<navbarProps> = ({}) => {
   );
 };
 
-export default Navbar;
+export default React.memo(Navbar);

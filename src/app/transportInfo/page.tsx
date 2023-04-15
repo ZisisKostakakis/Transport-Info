@@ -1,21 +1,27 @@
-import Link from 'next/link';
+import CardLink from '@/components/cardLink';
 
 interface pageProps {}
 
 const TransportInfo: React.FC<pageProps> = ({}) => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="min-h-screen flex-col items-center justify-between p-24">
       <div className="homePageText">Transport Types</div>
-      <div className="flex flex-row items-center justify-between p-24">
-        <Link className="transportTypeLinks" href={'/transportInfo/flights'}>
-          Flights
-        </Link>
-        <Link className="transportTypeLinks" href={'/transportInfo/buses'}>
-          Buses
-        </Link>
-        <Link className="transportTypeLinks" href={'/transportInfo/trains'}>
-          Trains
-        </Link>
+      <div className="flex flex-row justify-between p-24">
+        <CardLink
+          href="/transportInfo/flights"
+          title="Flights"
+          description="Get information regarding Flights!"
+        />
+        <CardLink
+          href="/transportInfo/buses"
+          title="Buses"
+          description="Get information regarding Buses!"
+        />
+        <CardLink
+          href="/transportInfo/trains"
+          title="Trains"
+          description="Get information regarding Trains!"
+        />
       </div>
     </main>
   );

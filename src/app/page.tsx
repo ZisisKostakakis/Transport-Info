@@ -3,7 +3,6 @@ import { SignedIn, SignedOut } from '@clerk/nextjs/app-beta';
 import Link from 'next/link';
 
 export default function Home() {
-  // const user = useUser();
   return (
     <>
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -12,7 +11,7 @@ export default function Home() {
           <div>
             <a
               href="/transportInfo"
-              className="flex flex-auto justify-center rounded-lg bg-blue-700 py-2.5 text-2xl font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="focus:ring-6 flex flex-auto justify-center rounded-lg bg-slate-500 py-2.5 text-2xl font-medium text-white hover:bg-slate-500 focus:outline-none focus:ring-blue-200 dark:bg-gray-900 dark:hover:bg-slate-500 dark:focus:ring-slate-200"
             >
               Dashboard
             </a>
