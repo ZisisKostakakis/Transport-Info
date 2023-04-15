@@ -11,7 +11,7 @@ export default function Home() {
           <div>
             <a
               href="/transportInfo"
-              className="focus:ring-6 flex flex-auto justify-center rounded-lg bg-slate-500 py-2.5 text-2xl font-medium text-white hover:bg-slate-500 focus:outline-none focus:ring-blue-200 dark:bg-gray-900 dark:hover:bg-slate-500 dark:focus:ring-slate-200"
+              className="focus:ring-6 flex flex-auto justify-center rounded-lg bg-gray-900 py-2.5 text-2xl font-medium text-white hover:bg-slate-500 focus:outline-none focus:ring-slate-200"
             >
               Dashboard
             </a>
