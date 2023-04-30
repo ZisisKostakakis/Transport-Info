@@ -12,118 +12,134 @@ type Flights = {
   eusiness: string;
   first_class: string;
 };
+interface Flights_API {
+  GET_FLIGHTS: string;
+}
 interface DATA_API_KEY_TYPE {
   DATA_API_KEY: string;
 }
 declare global {
   namespace NodeJS {
     interface ProcessEnv extends DATA_API_KEY_TYPE {}
+    interface ProcessEnv extends Flights_API {}
   }
 }
 
 export default async function Home() {
-  // const res = await fetch(process.env.GET_FLIGHTS, {
-  const res = await fetch('https://api.publicapis.org/entries', {
+  const res = await fetch(process.env.GET_FLIGHTS, {
     headers: {
       'Content-Type': 'application/json',
-      'API-Key': process.env.DATA_API_KEY,
+      'x-api-key': process.env.DATA_API_KEY,
     },
   });
-  // const data: Flights[] = await res.json();
-  const data = await res.json();
+  const data: Flights = await res.json();
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="homePageText">Flights</div>
-      <table className="table-auto border-collapse border border-gray-600">
-        <thead>
-          <tr>
-            <th className="border border-gray-600">Flight Number</th>
-            <th className="border border-gray-600">From Country</th>
-            <th className="border border-gray-600">To Country</th>
-            <th className="border border-gray-600">From City</th>
-            <th className="border border-gray-600">To City</th>
-            <th className="border border-gray-600">From Date</th>
-            <th className="border border-gray-600">To Date</th>
-            <th className="border border-gray-600">Departure</th>
-            <th className="border border-gray-600">Arrival</th>
-            <th className="border border-gray-600">Economy</th>
-            <th className="border border-gray-600">EBusiness</th>
-            <th className="border border-gray-600">First Class</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td className="border border-gray-600 px-4 py-2">
-              {data.entries[0].API}
-            </td>
-            <td className="border border-gray-600 px-4 py-2">
-              {data.entries[0].API}
-            </td>
-            <td className="border border-gray-600 px-4 py-2">
-              {data.entries[0].Auth}
-            </td>
-            <td className="border border-gray-600 px-4 py-2">
-              {data.entries[0].HTTPS}
-            </td>
-            <td className="border border-gray-600 px-4 py-2">
-              {data.entries[0].Cors}
-            </td>
-            <td className="border border-gray-600 px-4 py-2">
-              {data.entries[0].Link}
-            </td>
-            <td className="border border-gray-600 px-4 py-2">
-              {data.entries[0].Category}
-            </td>
-            <td className="border border-gray-600 px-4 py-2">Testing</td>
-            <td className="border border-gray-600 px-4 py-2">Testing</td>
-            <td className="border border-gray-600 px-4 py-2">Testing</td>
-            <td className="border border-gray-600 px-4 py-2">Testing</td>
-            <td className="border border-gray-600 px-4 py-2">Testing</td>
-          </tr>
-        </tbody>
-        {/* <tbody>
-          {data.map((flight, index) => (
-            <tr key={index}>
-              <td className="border border-gray-600 px-4 py-2">
-                {flight.flights_number}
-              </td>
-              <td className="border border-gray-600 px-4 py-2">
-                {flight.from_Country}
-              </td>
-              <td className="border border-gray-600 px-4 py-2">
-                {flight.to_Country}
-              </td>
-              <td className="border border-gray-600 px-4 py-2">
-                {flight.from_city}
-              </td>
-              <td className="border border-gray-600 px-4 py-2">
-                {flight.to_city}
-              </td>
-              <td className="border border-gray-600 px-4 py-2">
-                {flight.from_date}
-              </td>
-              <td className="border border-gray-600 px-4 py-2">
-                {flight.to_date}
-              </td>
-              <td className="border border-gray-600 px-4 py-2">
-                {flight.departure}
-              </td>
-              <td className="border border-gray-600 px-4 py-2">
-                {flight.arrival}
-              </td>
-              <td className="border border-gray-600 px-4 py-2">
-                {flight.economy}
-              </td>
-              <td className="border border-gray-600 px-4 py-2">
-                {flight.eusiness}
-              </td>
-              <td className="border border-gray-600 px-4 py-2">
-                {flight.first_class}
-              </td>
-            </tr>
-          ))}
-        </tbody> */}
-      </table>
+      <div className="flex flex-col justify-between">
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+          <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
+            <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" className="px-6 py-3">
+                  Flight Number
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  From Country
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  To Country
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  From City
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  To City
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  From Date
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  To Date
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Departure
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Arrival
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Economy
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Business
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  First Class
+                </th>
+                <th scope="col" className="relative px-6 py-3">
+                  Find More
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+              <tr className="bg-white dark:bg-gray-900">
+                <td className="px-6 py-4">
+                  <div className="flex items-center space-x-3">
+                    <div>
+                      <p className="">{data.flights_number[1]}</p>
+                    </div>
+                  </div>
+                </td>
+                <td className="px-6 py-4">
+                  <p className="">{data.from_Country[1]}</p>
+                </td>
+                <td className="px-6 py-4">
+                  <p className="">{data.to_Country[1]}</p>
+                </td>
+                <td className="px-6 py-4">
+                  <p className="">{data.from_city[1]}</p>
+                </td>
+                <td className="px-6 py-4">
+                  <p className="">{data.to_city[1]}</p>
+                </td>
+                <td className="px-6 py-4">
+                  <p className="">{data.from_date[1]}</p>
+                </td>
+                <td className="px-6 py-4">
+                  <p className="">{data.to_date[1]}</p>
+                </td>
+                <td className="px-6 py-4">
+                  <p className="">{data.departure[1]}</p>
+                </td>
+                <td className="px-6 py-4">
+                  <p className="">{data.arrival[1]}</p>
+                </td>
+                <td className="px-6 py-4">
+                  <p className="">{data.economy[1]}</p>
+                </td>
+                <td className="px-6 py-4">
+                  <p className="">{data.eusiness[1]}</p>
+                </td>
+                <td className="px-6 py-4">
+                  <p className="">{data.first_class[1]}</p>
+                </td>
+                <td className="px-6 py-4">
+                  <div className="flex items-center space-x-4">
+                    <a
+                      href="#"
+                      className="focus:shadow-outline-blue flex items-center justify-between rounded border border-transparent bg-blue-600 px-2 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 hover:bg-blue-700 focus:outline-none active:bg-blue-600"
+                    >
+                      <span>Find More</span>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </main>
   );
 }
