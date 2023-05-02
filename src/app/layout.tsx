@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <ClerkProvider>
         <body>
-          <script src="https://kit.fontawesome.com/cfb314ea0a.js" async />
+          <script src="//kit.fontawesome.com/cfb314ea0a.js" async />
           <Navbar />
           {children}
         </body>
