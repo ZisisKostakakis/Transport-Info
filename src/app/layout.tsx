@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from '@/components/navbar';
 import { ClerkProvider } from '@clerk/nextjs/app-beta';
 import './globals.css';
@@ -19,6 +20,7 @@ export default function RootLayout({
           <script src="//kit.fontawesome.com/cfb314ea0a.js" async />
           <Navbar />
           {children}
+          <Analytics />
         </body>
       </ClerkProvider>
     </html>
