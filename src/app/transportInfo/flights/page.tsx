@@ -1,17 +1,21 @@
+import Link from 'next/link';
+
 type Flights = {
-  flights_number: string;
-  from_Country: string;
-  to_Country: string;
-  from_city: string;
-  to_city: string;
-  from_date: string;
-  to_date: string;
-  departure: string;
-  arrival: string;
-  economy: string;
-  eusiness: string;
-  first_class: string;
+  [key: string]: {
+    from_Country: string;
+    to_Country: string;
+    from_city: string;
+    to_city: string;
+    from_date: string;
+    to_date: string;
+    departure: string;
+    arrival: string;
+    economy: number;
+    eusiness: number;
+    first_class: number;
+  };
 };
+
 interface Flights_API {
   GET_FLIGHTS: string;
 }
@@ -27,119 +31,128 @@ declare global {
 
 export default async function Home() {
   const res = await fetch(process.env.GET_FLIGHTS, {
+    //  if I want to revalidate the data every 10 seconds
+    next: { revalidate: 10 },
     headers: {
       'Content-Type': 'application/json',
       'x-api-key': process.env.DATA_API_KEY,
     },
   });
   const data: Flights = await res.json();
-  console.log(data);
+  const { body }: any = data;
+  const flights = JSON.parse(body);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="homePageText">Flights</div>
-      <div className="flex flex-col justify-between">
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
-            <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
-              <tr>
-                <th scope="col" className="px-6 py-3">
-                  Flight Number
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  From Country
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  To Country
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  From City
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  To City
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  From Date
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  To Date
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Departure
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Arrival
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Economy
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Business
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  First Class
-                </th>
-                <th scope="col" className="relative px-6 py-3">
-                  Find More
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-              <tr className="bg-white dark:bg-gray-900">
-                <td className="px-6 py-4">
-                  <div className="flex items-center space-x-3">
-                    <div>
-                      <p className="">{data.flights_number[1]}</p>
-                    </div>
-                  </div>
-                </td>
-                <td className="px-6 py-4">
-                  <p className="">{data.from_Country[1]}</p>
-                </td>
-                <td className="px-6 py-4">
-                  <p className="">{data.to_Country[1]}</p>
-                </td>
-                <td className="px-6 py-4">
-                  <p className="">{data.from_city[1]}</p>
-                </td>
-                <td className="px-6 py-4">
-                  <p className="">{data.to_city[1]}</p>
-                </td>
-                <td className="px-6 py-4">
-                  <p className="">{data.from_date[1]}</p>
-                </td>
-                <td className="px-6 py-4">
-                  <p className="">{data.to_date[1]}</p>
-                </td>
-                <td className="px-6 py-4">
-                  <p className="">{data.departure[1]}</p>
-                </td>
-                <td className="px-6 py-4">
-                  <p className="">{data.arrival[1]}</p>
-                </td>
-                <td className="px-6 py-4">
-                  <p className="">{data.economy[1]}</p>
-                </td>
-                <td className="px-6 py-4">
-                  <p className="">{data.eusiness[1]}</p>
-                </td>
-                <td className="px-6 py-4">
-                  <p className="">{data.first_class[1]}</p>
-                </td>
-                <td className="px-6 py-4">
-                  <div className="flex items-center space-x-4">
-                    <a
-                      href="#"
-                      className="focus:shadow-outline-blue flex items-center justify-between rounded border border-transparent bg-blue-600 px-2 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 hover:bg-blue-700 focus:outline-none active:bg-blue-600"
-                    >
-                      <span>Find More</span>
-                    </a>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    <div className="flex flex-col items-center">
+      <div className="flex flex-row justify-between ">
+        <Link
+          className="transform whitespace-nowrap  border-b-4 border-blue-600 px-6 py-8
+        text-center text-2xl font-medium shadow-lg transition duration-500 ease-in-out hover:-translate-y-1 hover:text-blue-600
+      "
+          href="/transportInfo/trains"
+        >
+          Trains
+        </Link>
+        <Link
+          className="transform whitespace-nowrap border-b-4 border-blue-600 px-6 py-8
+        text-center text-2xl font-medium shadow-lg transition duration-500 ease-in-out hover:-translate-y-1 hover:text-blue-600
+      "
+          href="/transportInfo"
+        >
+          Main menu
+        </Link>
+        <Link
+          className="transform whitespace-nowrap border-b-4 border-blue-600 px-6 py-8
+        text-center text-2xl font-medium shadow-lg transition duration-500 ease-in-out hover:-translate-y-1 hover:text-blue-600
+      "
+          href="/transportInfo/buses"
+        >
+          Buses
+        </Link>
       </div>
-    </main>
+      <main className="flex min-h-screen flex-col items-center justify-between ">
+        <div className=" space-y-6">
+          <div className="homePageText">Flights</div>
+          <div className="flex flex-col justify-between">
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+              <table className="w-full table-auto text-left text-sm text-gray-500 dark:text-gray-400">
+                <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+                  <tr>
+                    <th scope="col" className="px-6 py-3">
+                      Flight Number
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      From Country
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      To Country
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      From Date
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      To Date
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Departure
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Arrival
+                    </th>
+                    <th scope="col" className="relative px-6 py-3">
+                      Find More
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                  {Object.keys(flights).map((key) => (
+                    <tr key={key}>
+                      <td className="whitespace-nowrap px-6 py-4">
+                        <div className="text-sm text-gray-900 dark:text-gray-100">
+                          {key}
+                        </div>
+                      </td>
+                      <td className="whitespace-nowrap px-6 py-4">
+                        <div className="text-sm text-gray-900 dark:text-gray-100">
+                          {flights[key].from_Country}
+                        </div>
+                      </td>
+                      <td className="whitespace-nowrap px-6 py-4">
+                        <div className="text-sm text-gray-900 dark:text-gray-100">
+                          {flights[key].to_Country}
+                        </div>
+                      </td>
+                      <td className="whitespace-nowrap px-6 py-4">
+                        <div className="text-sm text-gray-900 dark:text-gray-100">
+                          {flights[key].from_date}
+                        </div>
+                      </td>
+                      <td className="whitespace-nowrap px-6 py-4">
+                        <div className="text-sm text-gray-900 dark:text-gray-100">
+                          {flights[key].to_date}
+                        </div>
+                      </td>
+                      <td className="whitespace-nowrap px-6 py-4">
+                        <div className="text-sm text-gray-900 dark:text-gray-100">
+                          {flights[key].departure}
+                        </div>
+                      </td>
+                      <td className="whitespace-nowrap px-6 py-4">
+                        <div className="text-sm text-gray-900 dark:text-gray-100">
+                          {flights[key].arrival}
+                        </div>
+                      </td>
+                      <td className="hover:scale-10 text-md transform whitespace-nowrap px-6 py-4 text-right font-medium transition duration-500 ease-in-out hover:-translate-y-1 hover:text-blue-500 ">
+                        <a href="#">Find More</a>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
   );
 }
