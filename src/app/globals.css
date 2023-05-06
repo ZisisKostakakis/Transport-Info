@@ -23,7 +23,7 @@ body {
 }
 
 .homePageText {
-  @apply mt-8 text-center text-8xl text-white;
+  @apply mt-8 text-center text-2xl text-white md:text-4xl lg:text-8xl;
 }
 
 .secondaryHomePageText {
