@@ -99,9 +99,6 @@ export default async function Home() {
                     <th scope="col" className="px-6 py-3">
                       Arrival
                     </th>
-                    <th scope="col" className="relative px-6 py-3">
-                      Find More
-                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -141,9 +138,6 @@ export default async function Home() {
                         <div className="text-sm text-gray-900 dark:text-gray-100">
                           {trains[key].arrival}
                         </div>
-                      </td>
-                      <td className="hover:scale-10 text-md transform whitespace-nowrap px-6 py-4 text-right font-medium transition duration-500 ease-in-out hover:-translate-y-1 hover:text-blue-500 ">
-                        <a href="#">Find More</a>
                       </td>
                     </tr>
                   ))}

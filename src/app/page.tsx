@@ -1,11 +1,10 @@
-import Navbar from '@/components/navbar';
 import { SignedIn, SignedOut } from '@clerk/nextjs/app-beta';
 import Link from 'next/link';
 
 export default function Home() {
   return (
     <>
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <main className="flex min-h-screen flex-col items-center gap-6 p-24">
         <h1 className="homePageText">Welcome to Transport-Info</h1>
         <SignedIn>
           <div>
