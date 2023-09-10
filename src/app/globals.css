@@ -27,7 +27,7 @@ body {
 }
 
 .secondaryHomePageText {
-  @apply mt-8 text-center text-4xl text-white;
+  @apply mt-8 text-center text-xl text-white md:text-4xl lg:text-4xl;
 }
 
 .header {
